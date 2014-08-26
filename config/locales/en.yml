@@ -2,8 +2,8 @@
 en:
   spree:
     chimpy:
-      subscribed_label: Sign me up to the newsletter
-      admin_subscribed_label: Subscribed to newsletter
+      subscribed_label: Receive Polpa news and promotions
+      admin_subscribed_label: Receiving Polpa news and promotions
       subscribe_title: Subscribe to our newsletter
       subscribed: Subscribed
       uncategorized: Uncategorized
@@ -12,4 +12,4 @@ en:
         placeholder: Enter your email address
       subscriber:
         success: Thanks! you've been successfully added
-        failure: There was a problem processing your sign-up
+        failure: Sorry there was a problem processing your sign-up

@@ -1,5 +1,5 @@
 class Spree::Chimpy::SubscribersController < ApplicationController
-  respond_to :html
+  respond_to :html, :js
 
   def create
     @subscriber = Spree::Chimpy::Subscriber.where(email: subscriber_params[:email]).first_or_initialize
@@ -11,7 +11,10 @@ class Spree::Chimpy::SubscribersController < ApplicationController
       flash[:error] = Spree.t(:failure, scope: [:chimpy, :subscriber])
     end
 
-    respond_with @subscriber, location: request.referer
+    respond_with(@subscriber) do |format|
+      format.html { redirect_to request.referer }
+      format.js
+    end
   end
 
   private

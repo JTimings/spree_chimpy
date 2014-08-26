@@ -7,28 +7,41 @@ module Spree::Chimpy
     end
 
     def subscribe
-      defer(:subscribe)
+      if subscribing? # after_create, check user really wanted to subscribe
+        defer(:subscribe)
+      end
     end
 
     def unsubscribe
-      defer(:unsubscribe)
+      if unsubscribing? # after_destroy, don't make api call if user already unsubscribed
+        defer(:unsubscribe)
+      end
+    end
+
+    def update_member
+      defer(:update_member)
     end
 
     def resubscribe(&block)
       block.call if block
-
       return unless configured?
 
-      if unsubscribing?
-        unsubscribe
-      elsif subscribing? || merge_vars_changed?
-        subscribe
+      if subscribed_changed?
+        if unsubscribing?
+          unsubscribe
+        elsif subscribing?
+          subscribe
+        end
+      end
+      if merge_vars_changed? && !unsubscribing? # api doesn't allow updating an unsubscribed member / someone not on a list
+        update_member
       end
     end
 
   private
     def defer(event)
-      enqueue(event, @model) if allowed?
+      #enqueue(event, @model) if allowed?
+      enqueue(event, @model) if configured?
     end
 
     def allowed?
@@ -36,11 +49,16 @@ module Spree::Chimpy
     end
 
     def subscribing?
-      merge_vars_changed? && @model.subscribed
+      #merge_vars_changed? && @model.subscribed
+      @model.subscribed
     end
 
     def unsubscribing?
-      !@new_record && !@model.subscribed && @model.subscribed_changed?
+      !@new_record && !@model.subscribed
+    end
+
+    def subscribed_changed?
+      @model.subscribed_changed?
     end
 
     def merge_vars_changed?

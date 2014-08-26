@@ -24,10 +24,16 @@ module Spree::Chimpy
         @api.list_unsubscribe(id: list_id, email_address: email)
       end
 
+      def update_member(old_email, email)
+        log "Updating member #{old_email} to #{email} on list #{@list_name}"
+        
+        @api.list_update_member(id: list_id, email_address: old_email, merge_vars: {"EMAIL"=>email})
+      end
+
       def info(email_or_id)
         log "Checking member info for #{email_or_id} from #{@list_name}"
-
         response = @api.list_member_info(id: list_id, email_address: email_or_id)
+        log "#{response}"
         record = response['data'].first.symbolize_keys
 
         record.key?(:error) ? {} : record

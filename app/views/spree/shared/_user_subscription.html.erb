@@ -1,6 +1,7 @@
-<div id="user-subscribe-container">
+<div class="checkbox" id="user-subscribe-container" style="margin-top:0px;">
   <p>
-    <%= f.check_box :subscribed %>
+    <%= f.check_box :subscribed, :checked => @user ? @user.subscribed : @spree_user.subscribed, :autocomplete => 'off' %>
     <%= f.label :subscribed, Spree.t(:subscribed_label, scope: :chimpy) %>
+    <%= f.email_field :old_email, :class => 'form-control, hidden', :value => @user ? @user.email : nil %>
   </p>
 </div>
