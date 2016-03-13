@@ -1,0 +1,15 @@
+---
+th:
+  spree:
+    chimpy:
+      subscribed_label: รับโปรโมชั่นและข่าวสารจาก Polpa
+      admin_subscribed_label: รับโปรโมชั่นและข่าวสารจาก Polpa
+      subscribe_title: สมัครเพื่อรับข่าวสาร
+      subscribed: สมัคร
+      uncategorized: ไม่มีหมวดหมู่
+      email:
+        label: อีเมล์
+        placeholder: ใส่อีเมล์
+      subscriber:
+        success: ขอบคุณค่ะ เราใส่ข้อมูลคุณเรียบร้อยแล้ว
+        failure: ขอบอภัยค่ะ เกิดปัญหาระหว่างการสมัคร
