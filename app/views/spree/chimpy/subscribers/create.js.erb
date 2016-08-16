@@ -1,0 +1,16 @@
+<% if @ouibounce %>
+	<% if @ouibounce_error %>
+		$('#ouibounce_form_email_error').removeClass('hidden');
+	<% else %>
+		$("#ouibounce_thks_email").html("<%= escape_javascript(render(:partial => 'spree/shared/ouibounce_email', :locals => { :email => @subscriber.email })) %>");
+		$("#ouibounce_overlay_offer").addClass('hidden');
+		$("#ouibounce_overlay_thks").removeClass('hidden');
+		$('#ouibounce_form').trigger("reset");
+	<% end %>
+  $('#ouibounce_overlay_inner').data('spinner').stop();
+  $('#ouibounce_overlay_inner').removeClass('disable-content');
+<% else %>
+  $("#flash-messages").html("<%= escape_javascript(render(:partial => 'spree/shared/message')) %>");
+  $("html, body").animate({ scrollTop: 0 }, 500);
+  $("#footer_subscribe_wrapper").html("<%= escape_javascript(render(:partial => 'spree/shared/footer_subscribe', :locals => { :subscriber => nil })) %>");
+<% end %>

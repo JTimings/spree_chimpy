@@ -1,0 +1,40 @@
+<table>
+  <tr>
+    <td>
+
+      <center class="p_wrapper">
+        <table>
+          <tr>
+            <td>
+              <p class="serif"><%= Spree.t(:enjoy_15_pc_off_txt_1) %><span class="brand_colour serif-bold"><%= @code.upcase %></span><%= Spree.t(:enjoy_15_pc_off_txt_2) %></p>
+            </td>
+          </tr>
+        </table>
+      </center>
+
+      <center>
+        <table class="button" style="width:180px; margin-bottom: 10px;">
+          <tr>
+            <td class="sans-serif caps brand_colour_bg" style="border:0 !important;">
+              <a class="sans-serif caps" href="<%= url_for(controller: 'spree/products', action: 'index', only_path: false) %>"><%= Spree.t(:order_now).upcase %></a>
+            </td>
+          </tr>
+        </table>
+      </center>
+
+      <center align="left" class="p_wrapper">
+        <table>
+          <tr>
+            <td>        
+              <p class="serif"><%= Spree.t(:enjoy_15_pc_off_txt_3) %> <%= link_to(Spree.t(:contact_us), url_for(controller: 'spree/static_content', action: 'show', path: 'contact', only_path: false), :class => 'brand_colour' ) %>.<br></p>
+              <p class="serif"><%= Spree.t(:password_reset_6) %><br><%= Spree.t(:the_polpa_team) %></p>
+              <p class="serif" style="font-size: 13px; color:#bbbbbb; margin-bottom: 0px;"><%= Spree.t(:enjoy_15_pc_off_txt_4) %>
+            </td>
+          </tr>
+        </table>
+      </center>
+       
+    </td>
+    <td class="expander"></td>
+  </tr>
+</table>
